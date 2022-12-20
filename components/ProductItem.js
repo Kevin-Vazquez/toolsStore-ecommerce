@@ -3,12 +3,12 @@ import React from 'react'
 
 export default function ProductItem({ products }) {
   return (
-    <div className='card'>
+    <div className='card flex flex-col justify-between'>
       <Link href={`/product/${products.slug}`}>
         <img 
         src={products.image}
         alt={products.name}
-        className="rounded shadow"
+        className="rounded w-full"
         />
       </Link>
       <div className='flex flex-col items-center justify-center p-5'>

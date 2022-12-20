@@ -14,9 +14,9 @@ const data = {
         },
         {
             name : "Foco Led",
-            slug : "foco-led",
+            slug : "foco-elektron",
             category : "focos",
-            image : "/images/focoGardex.jpg",
+            image : "/images/focoElektron.png",
             price : 80,
             brand : "Gardex",
             rating : 3.2,
@@ -26,9 +26,9 @@ const data = {
         },
         {
             name : "Foco Led",
-            slug : "foco-led",
+            slug : "tanque",
             category : "focos",
-            image : "/images/focoGardex.jpg",
+            image : "/images/tanque.jpg",
             price : 80,
             brand : "Gardex",
             rating : 3.2,
