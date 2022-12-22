@@ -4,6 +4,7 @@ import React, { useContext } from 'react'
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
 import { XCircleIcon } from '@heroicons/react/outline';
+import { useRouter } from 'next/router';
 
 export default function CartScreen() {
     const {state, dispatch} = useContext(Store);
@@ -13,15 +14,22 @@ export default function CartScreen() {
     const removeItemHandler = (item)=>{
         dispatch({type: 'CART_REMOVE_ITEM', payload: item});
     }
+    const router = useRouter();
+    const updateCartHandler = (item, qty)=>{
+        const quantity = Number(qty);
+        dispatch({type : "CART_ADD_ITEM", payload : {...item, quantity}})
+    }
 
     return (
     <Layout title="Shopping Cart">
         <h1 className='mb-4 text-xl'>Shopping Cart</h1>
         {
             cartItems.length === 0 ? 
-            (<div>
-                Cart is empty. <Link href="/">Go shopping</Link>
-            </div>) : 
+            (
+                <div>
+                    Cart is empty. <Link href="/">Go shopping</Link>
+                </div>
+            ) : 
             (
                 <div className='grid md:grid-cols-4 md:gap-5'>
                     <div className='overflow-x-auto md:col-span-3'>
@@ -50,13 +58,13 @@ export default function CartScreen() {
                                                     {item.name}
                                                 </Link>
                                             </td>
-                                            <td className='p-5 text-right'>{item.quantity}</td>
+                                            <td className='p-5 text-right'>
+                                                    
+                                            </td>
                                             <td className='p-5 text-right'>${item.price}</td>
                                             <td className='p-5 text-center'>
                                                 <button onClick={() => removeItemHandler(item)}>
-                                                    <XCircleIcon className="h-5 w-5">
-
-                                                    </XCircleIcon>
+                                                    <XCircleIcon className="h-5 w-5"></XCircleIcon>
                                                 </button>
                                             </td>
                                         </tr>
@@ -64,6 +72,18 @@ export default function CartScreen() {
                                 }
                             </tbody>
                         </table>
+                    </div>
+                    <div className='card p-5'>
+                        <ul>
+                            <li>
+                                <div className='pb-3 text-xl font-bold'>Subtotal ({ cartItems.reduce((a, c)=> a + c.quantity, 0) }){"  "} : $
+                                {cartItems.reduce((a, c)=> a + c.quantity * c.price, 0)}
+                                </div>
+                            </li>
+                            <li>
+                                <button className='primary-button w-full' onClick={()=> router.push("/shipping")}>Check Out</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             )
