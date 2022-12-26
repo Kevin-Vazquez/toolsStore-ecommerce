@@ -1,5 +1,5 @@
 import '../styles/globals.css'
-import { StoreProvider } from '../utils/Store'
+import { StoreProvider } from '../dat/Store.js'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -9,4 +9,4 @@ function MyApp({ Component, pageProps }) {
   )
 }
 
-export default MyApp
+export default MyApp;

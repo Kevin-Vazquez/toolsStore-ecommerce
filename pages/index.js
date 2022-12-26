@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import data from '../utils/data';
+import data from '../dat/data';
 import ProductItem from '../components/ProductItem';
 
 export default function Home() {
@@ -11,5 +11,5 @@ export default function Home() {
         )}
       </div>
     </Layout>
-  )
+  );
 }
